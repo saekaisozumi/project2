@@ -1,0 +1,21 @@
+<h3>sign up</h3>
+
+<form action="/signup" method="POST">
+  <label for="username">Username</label>
+  <input type="text" name="username" required="required">
+  <br>
+  <label for="password">Password</label>
+  <input type="password" name="password" required="required" minlength="6">
+  <br>
+  <button type="submit">Sign up</button>
+
+  <a href="/facebook">Login via Facebook</a>
+
+  <p>Do you already have an account?
+    <a href="/login">Login</a>
+  </p>
+</form>
+
+{{#if errorMessage}}
+{{errorMessage}}
+{{/if}}
