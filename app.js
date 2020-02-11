@@ -155,6 +155,31 @@ passport.use(
   )
 );
 
+//FOURSQUARE API
+// const request = require("request");
+
+// request(
+//   {
+//     url: "https://api.foursquare.com/v2/venues/explore",
+//     method: "GET",
+//     qs: {
+//       client_id: process.env.apiClientID,
+//       client_secret: process.env.apiClientSecret,
+//       ll: "40.7243,-74.0018",
+//       query: "coffee",
+//       v: "20180323",
+//       limit: 1
+//     }
+//   },
+//   function(err, res, body) {
+//     if (err) {
+//       console.error(err);
+//     } else {
+//       console.log(body);
+//     }
+//   }
+// );
+
 // Express View engine setup
 
 app.use(
