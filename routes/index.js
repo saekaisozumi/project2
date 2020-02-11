@@ -7,6 +7,11 @@ router.get("/", (req, res, next) => {
   res.render("index", { user: req.user });
 });
 
+router.get("/details", (req, res, next) => {
+  console.log(req.user);
+  res.render("details", { user: req.user });
+});
+
 /* router.get("/main", (req, res, next) => {
   if (!req.session.user) {
     res.redirect("/");

@@ -180,4 +180,7 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 app.use("/", authRoutes);
 
+/* const mainRoutes = require("./routes/maps");
+app.use("/", mainRoutes); */
+
 module.exports = app;
