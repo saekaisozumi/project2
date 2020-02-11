@@ -12,6 +12,12 @@ const bcryptSalt = 10;
 router.get("/login", (req, res, next) => {
   res.render("auth/login.hbs");
 });
+
+//changed here /main
+router.get("/main", (req, res, next) => {
+  res.render("main.hbs");
+});
+
 //Sign up route
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup.hbs");
@@ -30,24 +36,32 @@ router.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
     failureRedirect: "/",
-    successRedirect: "/"
+    successRedirect: "/main"
+    //changed here /main
   })
 );
 
 //google login
+// router.get(
+//   "/google",
+//   passport.authenticate("google", {
+//     scope: [
+//       "https://www.googleapis.com/auth/userinfo.profile",
+//       "https://www.googleapis.com/auth/userinfo.email"
+//     ]
+//   })
+// );
+
 router.get(
-  "/google",
-  passport.authenticate("google", {
-    scope: [
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email"
-    ]
-  })
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile"] })
 );
+
 router.get(
-  "/google/callback",
+  "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "/",
+    successRedirect: "/main",
+    //changed here /main
     failureRedirect: "/signup" // here you would redirect to the login page using traditional login approach
   })
 );
@@ -99,7 +113,8 @@ router.post("/signup", (req, res, next) => {
       //console.log(createdUser);
 
       req.login(createdUser, () => {
-        res.redirect("/");
+        res.redirect("/main");
+        //changed here /main
       });
     })
     .catch(err => {
@@ -146,7 +161,8 @@ router.post("/signup", (req, res, next) => {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/main",
+    //changed here /main
     failureRedirect: "/login",
     failureFlash: true,
     passReqToCallback: true
