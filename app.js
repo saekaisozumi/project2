@@ -125,13 +125,14 @@ passport.use(
 
 //google login
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+// var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.googleClientID,
       clientSecret: process.env.googleClientSecret,
-      callbackURL: "https://localhost:3000/google/callback"
+      callbackURL: "https://localhost:3000/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
       // to see the structure of the data in received response:
