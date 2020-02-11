@@ -34,6 +34,24 @@ router.get(
   })
 );
 
+//google login
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  })
+);
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/",
+    failureRedirect: "/signup" // here you would redirect to the login page using traditional login approach
+  })
+);
+
 //login
 // router.post(
 //   "/login",
@@ -63,7 +81,6 @@ router.post("/signup", (req, res, next) => {
     return;
   }
 
-  // User.findOne({ username });
   User.findOne({ username })
     .then(user => {
       if (user) {
