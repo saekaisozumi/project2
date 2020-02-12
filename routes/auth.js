@@ -14,9 +14,6 @@ router.get("/login", (req, res, next) => {
 });
 
 //changed here /main
-router.get("/main", (req, res, next) => {
-  res.render("main.hbs");
-});
 
 //Sign up route
 router.get("/signup", (req, res, next) => {
