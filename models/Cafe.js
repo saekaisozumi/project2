@@ -1,10 +1,28 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+const { Schema } = mongoose;
 const cafeSchema = new Schema({
+  image: {
+    type: String,
+    default:
+      "https://s3-media3.fl.yelpcdn.com/bphoto/Ot26uzXdx-poRgiGWyV_3w/o.jpg"
+  },
   name: String,
-  address: String,
-
+  location: {
+    address1: String,
+    address2: String,
+    street: String,
+    city: String,
+    zipcode: Number
+  },
+  phone: Number,
+  price: {
+    type: String
+    //enum: [good, ok, nogood]
+  },
+  wifi: {
+    type: String
+    //enum: [good, ok, nogood]
+  },
   comments: [
     {
       type: Schema.Types.ObjectId,
@@ -13,6 +31,5 @@ const cafeSchema = new Schema({
   ],
   coorinates: [Number]
 });
-
-const Cafe = mongoose.model("Cafe", cafeSchema);
+const Cafe = mongoose.model("Room", cafeSchema);
 module.exports = Cafe;
