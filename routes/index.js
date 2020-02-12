@@ -18,7 +18,7 @@ router.get("/caffees", (req, res, next) => {
   const searchRequest = {
     location: "mitte,berlin",
     // categories: "cafes",
-    categories: "internetcafe"
+    categories: "cafes"
   };
   const client = yelp.client(apiKey);
   client
@@ -26,6 +26,25 @@ router.get("/caffees", (req, res, next) => {
     .then(response => {
       let venues = response.jsonBody.businesses;
       res.json(venues);
+    })
+    .catch(e => {
+      console.log(e);
+    });
+});
+
+router.get("/details/:id", (req, res, next) => {
+  const client = yelp.client(apiKey);
+
+  let venueId = req.params.id;
+
+  console.log("WORKING", venueId);
+  client
+    .business(venueId)
+    .then(response => {
+      let details = response.jsonBody;
+      console.log("detailssss:", details);
+      res.render("details.hbs", { venue: details });
+      // res.json(response.jsonBody.coordinates);
     })
     .catch(e => {
       console.log(e);

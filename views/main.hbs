@@ -1,14 +1,41 @@
-<input type="text" name="search" placeholder="search a cafe">
-{{!-- <input type="submit" value="submit"> --}}
-<button>Submit</button>
-{{!-- </form> --}}
-<a href="/logout">Log out</a>
+<nav class="nav-bar-container">
+  <div class="float">
+    <div class="search-bar">
+      <input class="search-cafe" type="text" name="search" placeholder="search a cafe">
+      <button>search</button>
+    </div>
+  </div>
+  <div class="float">
+    <div class="date-time">
+      <select name="" id="filter-date">
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+        <option>Sunday</option>
+      </select>
 
-<h1>hello</h1>
+      <select name="" id="filter-time">
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+        <option>Sunday</option>
+      </select>
+    </div>
+  </div>
+  <div class="logout">
+    <a href="/logout"> Log out</a>
+  </div>
+</nav>
 
+{{!--　change above --}}
 
-<div id='map' style='width: 800px; height: 500px;'></div>
-
+<div id='map' style='width: 100%; height:700px;'></div>
 <script>
   mapboxgl.accessToken =
     "pk.eyJ1Ijoic2Fla2ExMTExIiwiYSI6ImNrNmhxcXZzeTB6MHUzbm1sZGg4dmd4NTcifQ.n75w0QK5TPx_Qrdq3zeyQA";
@@ -45,7 +72,7 @@
 
       const popup = new mapboxgl.Popup();
       popup.setLngLat({ lng: coordinates.longitude, lat: coordinates.latitude }); // in order to have longitude before latitude the data is reversed because it appears as latitude before longitude but if it is reversed here it will be reversed a second time negating the effect thus for the second time it is left as is
-      popup.setHTML(`<div><img src="${elem.image_url}" alt="" style="width:130px;height:130px;"> <a href="/details.hbs"><h3 >${elem.name}</h3></a><p> Address: ${elem.location.address1},${elem.location.zip_code},${elem.location.city} </p>
+      popup.setHTML(`<div><img src="${elem.image_url}" alt="" style="width:130px;height:130px;"> <a href="/details/${elem.id}"><h3 >${elem.name}</h3></a><p> Address: ${elem.location.address1},${elem.location.zip_code},${elem.location.city} </p>
       <p>Telephone:${elem.display_phone} </p><p> Rating: ${elem.rating}<p></div>`);
       marker.setPopup(popup);
 
@@ -69,4 +96,53 @@
 
   })
 
+  map.on('click', function (e) {
+    let coordinates = e.lngLat;
+
+    if (!coordinates.lng && !coordinates.lat)
+      coordinates = map.getCenter();
+    const marker = new mapboxgl.Marker(
+      { draggable: false }
+    )
+
+    marker.setLngLat({ lng: coordinates.lng, lat: coordinates.lat });
+    /*marker.addTo(map);*/
+
+    const popup = new mapboxgl.Popup({ closeOnClick: false, className: 'my-class' });
+    popup.setLngLat({ lng: coordinates.lng, lat: coordinates.lat });
+    popup.setHTML(`<h1><a href="/addCafe">Add Cafe</h1></a>`);
+    popup.addTo(map);
+    marker.addTo(map);
+    marker.setPopup(popup);
+    console.log(e.lngLat);
+
+
+
+    /*marker.on('dragend', (data) => {
+      const coord = data.target.getLngLat().toArray();*/
+    marker.on("dragend", data => {
+      const coord = data.target.coordinates;             //getLngLat().toArray();
+      axios
+        .patch(`http://localhost:3000/main`, { coordinates: coord })
+        .then(() => {
+          console.log("communities shown!");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+
+    })
+    console.log(e)
+
+
+
+  })
+
+
 </script>
+
+
+
+<footer>
+  <div class="footer-container"> created by...</div>
+</footer>

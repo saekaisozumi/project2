@@ -1,8 +1,102 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  padding: 10px;
+  font-family: "Courier New";
+  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */ }
 
-a {
-  color: #00B7FF; }
+.auth-img {
+  width: 100%;
+  position: absolute; }
+
+.auth {
+  position: relative;
+  padding-top: 40%;
+  margin-left: 60%;
+  /* width: 100%;
+    height: 60%; */
+  /* background-color: white; */
+  /* filter: blur(2px); */ }
+
+.auth a {
+  font-family: "Courier" !important;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none; }
+
+.auth a:hover {
+  color: #1a1a44; }
+
+.login-container h3 {
+  color: #694419; }
+
+.login-container a {
+  font-family: "Courier" !important;
+  font-size: 15px;
+  color: #694419;
+  text-decoration: none; }
+
+.login-container a:hover {
+  color: #301b03;
+  font-weight: bold; }
+
+.login-container label {
+  color: #694419; }
+
+.login-container p {
+  color: #694419;
+  font-size: 15px; }
+
+.login-img {
+  width: 100%;
+  position: absolute;
+  filter: blur(5px); }
+
+.login-info {
+  position: relative;
+  padding-top: 35%;
+  margin-left: 55%; }
+  .login-info button {
+    font-family: "Courier";
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #694419;
+    color: #694419;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px; }
+  .login-info button:hober {
+    color: #301b03; }
+  .login-info input {
+    border: none;
+    outline: none;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.116);
+    text-decoration: underline; }
+
+.nav-bar-container {
+  list-style-type: none;
+  margin-bottom: 2px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: #ffe5b4; }
+
+.float {
+  float: left; }
+
+.footer-container {
+  background-color: #ffe5b4;
+  padding: 10px;
+  margin-top: 2px; }
+
+.logout a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none; }
+
+/*# sourceMappingURL=style.css.map */
+/* something changed? */
 
 /*# sourceMappingURL=style.css.map */
