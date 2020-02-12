@@ -11,9 +11,9 @@ router.get("/", (req, res, next) => {
 
 router.get("/caffees", (req, res, next) => {
   const searchRequest = {
-    location: "mitte,berlin",
+    location: "berlin",
     // categories: “cafes”,
-    categories: "internetcafe"
+    categories: "cafes"
   };
   const client = yelp.client(apiKey);
   client
