@@ -180,4 +180,10 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 app.use("/", authRoutes);
 
+/* const mainRoutes = require("./routes/maps");
+app.use("/", mainRoutes); */
+
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/digit-nomadifi"
+);
 module.exports = app;
