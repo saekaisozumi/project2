@@ -8,6 +8,7 @@ body {
 
 .auth-img {
   width: 100%;
+  height: 100%;
   position: absolute;
 }
 
@@ -25,7 +26,7 @@ body {
 .auth a {
   font-family: "Courier" !important;
   //font-family: "Comic Sans MS";
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   color: #ffffff;
   text-decoration: none;
@@ -62,6 +63,7 @@ body {
 }
 .login-img {
   width: 100%;
+  height: 100%;
   position: absolute;
   filter: blur(5px);
 }
@@ -110,6 +112,119 @@ body {
   float: left;
 }
 
+//detail page
+.container {
+  display: flex;
+  width: 100%;
+  background-color: rgb(255, 214, 168);
+  flex-direction: row !important;
+  align-items: center;
+  font-family: "Courier" !important;
+  //font-family: "Comic Sans MS";
+  font-size: 15px;
+  //font-weight: bold;
+  color: rgb(105, 68, 25);
+
+  img {
+    padding: 30px;
+  }
+  button {
+    font-family: "Courier";
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    color: rgb(105, 68, 25);
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    //font-weight: bold;
+  }
+
+  input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgb(105, 68, 25);
+    outline: none;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.116);
+    width: 500px;
+    //text-decoration: underline;
+  }
+}
+
+.detail-container {
+  //display: inline;
+  margin-left: 20px;
+}
+
+//add cafe page
+.add-container {
+  display: block;
+  font-size: 20px;
+
+  height: 650px;
+  background-color: rgb(255, 214, 168);
+  color: rgb(105, 68, 25);
+  flex-direction: column;
+  text-align: center;
+
+  img {
+    width: 300px;
+    margin-top: 40px;
+  }
+  .add-name input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgb(105, 68, 25);
+    outline: none;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.116);
+    width: 500px;
+    //text-decoration: underline;
+  }
+  .add-address input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgb(105, 68, 25);
+    outline: none;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.116);
+    width: 500px;
+    //text-decoration: underline;
+  }
+}
+.add-button {
+  font-family: "Courier";
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  color: rgb(105, 68, 25);
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+}
+.add-phone input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgb(105, 68, 25);
+  outline: none;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.116);
+  width: 500px;
+  //text-decoration: underline;
+}
 //footer
 .footer-container {
   background-color: rgb(255, 229, 180);

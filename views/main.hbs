@@ -1,36 +1,42 @@
 <nav class="nav-bar-container">
   <div class="float">
     <div class="search-bar">
-      <input class="search-cafe" type="text" name="search" placeholder="search a cafe">
-      <button>search</button>
-    </div>
-  </div>
-  <div class="float">
-    <div class="date-time">
-      <select name="" id="filter-date">
-        <option>Monday</option>
-        <option>Tuesday</option>
-        <option>Wednesday</option>
-        <option>Thursday</option>
-        <option>Friday</option>
-        <option>Saturday</option>
-        <option>Sunday</option>
-      </select>
+      <input class="search-cafe" type="text" name="search" placeholder="search a cafe" id="searchForCafe">
+      <button onclick="searchForCafe()">Search</button>
+      {{!-- <form class="searchform" action="/main" method="GET">
+        <input for="searchinput" name="market" class="searchbar input is-danger" id="searchForCafe" type="text"
+          placeholder="Search a market" aria-label="Search"> --}}
+      <button onclick="getFromAPI()">Back</button>
+      <a href="addCafe"><button>Add a Cafe</button>
 
-      <select name="" id="filter-time">
-        <option>Monday</option>
-        <option>Tuesday</option>
-        <option>Wednesday</option>
-        <option>Thursday</option>
-        <option>Friday</option>
-        <option>Saturday</option>
-        <option>Sunday</option>
-      </select>
-    </div>
-  </div>
-  <div class="logout">
-    <a href="/logout"> Log out</a>
-  </div>
+
+        {{!-- </div>
+    <div class="float">
+      <div class="date-time">
+        <select name="" id="filter-date">
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+          <option>Sunday</option>
+        </select>
+
+        <select name="" id="filter-time">
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+          <option>Sunday</option>
+        </select>
+      </div>
+    </div> --}}
+        <div class="logout">
+          <a href="/logout"> Log out</a>
+        </div>
 </nav>
 
 {{!--　change above --}}
@@ -46,6 +52,8 @@
     zoom: 11.15
   });
 
+
+
   const nav = new mapboxgl.NavigationControl();
   map.addControl(nav, "top-right"); // where map refers to the name of our instance of Map
 
@@ -54,35 +62,59 @@
     trackUserLocation: true // default is false, allows to update user location on the map if the user's location changes
   });
   map.addControl(geolocate, "top-right");
-
+  let cafeCopy = [];
+  let markerCopy = [];
+  getFromAPI();
   //const cafeId = location.pathname.split('/')[1] // /main  NEED TO BE AN ACTUAL ID
-  axios.get(`http://localhost:3000/caffees`).then(response => {
-    console.log("RESPONSE ID", response.data)
-    response.data.forEach(elem => {
-      console.log(elem.coordinates)
-      let coordinates = elem.coordinates;
-      if (!coordinates.longitude && !coordinates.latitude) coordinates = map.getCenter();
-      const marker = new mapboxgl.Marker(
-        { draggable: false }
-      )
+  function getFromAPI() {
+    axios.get(`http://localhost:3000/caffees`).then(response => {
+      //console.log("RESPONSE ID", response.data)
+      response.data.forEach(elem => {
+        if (elem.coordinates) {
+          let coordinates = elem.coordinates;
+          console.log(elem, coordinates)
+          // console.log("ELEMENT", elem)
+          //console.log(coordinates)
+          cafeCopy.push(elem);
+          drawMarkers(coordinates, elem);
+          //cafeCopy.push()
+        }
+        else {
+          console.log(elem)
+        }
+        //console.log(elem.coordinates)
 
-
-      marker.setLngLat({ lng: coordinates.longitude, lat: coordinates.latitude });
-      marker.addTo(map);
-
-      const popup = new mapboxgl.Popup();
-      popup.setLngLat({ lng: coordinates.longitude, lat: coordinates.latitude });
-      popup.setHTML(`<div><img src="${elem.image_url}" alt="" style="width:130px;height:130px;"> <a href="/details/${elem.id}"><h3 >${elem.name}</h3></a><p> Address: ${elem.location.address1},${elem.location.zip_code},${elem.location.city} </p>
-      <p>Telephone:${elem.display_phone} </p><p> Rating: ${elem.rating}<p></div>`);
-      marker.setPopup(popup);
-
+      })
     })
-    return
-    /*marker.on('dragend', (data) => {
-      const coord = data.target.getLngLat().toArray();*/
+  }
+
+
+
+
+  //function to draw markers
+  function drawMarkers(coordinates, elem) {
+
+    if (!coordinates.longitude && !coordinates.latitude)
+      coordinates = map.getCenter();
+    const marker = new mapboxgl.Marker(
+      { draggable: false }
+    )
+
+    marker.setLngLat({ lng: coordinates.longitude, lat: coordinates.latitude });
+    marker.addTo(map);
+    //console.log("MARKER", marker);
+    markerCopy.push(marker);
+
+    const popup = new mapboxgl.Popup();
+    popup.setLngLat({ lng: coordinates.longitude, lat: coordinates.latitude }); // in order to have longitude before latitude the data is reversed because it appears as latitude before longitude but if it is reversed here it will be reversed a second time negating the effect thus for the second time it is left as is
+    popup.setHTML(`<div><img src="${elem.image_url}" alt="" style="width:130px;height:130px;"> <a href="/details/${elem.id}"><h3 >${elem.name}</h3></a><p> Address: ${elem.location.display_address[0]},${elem.location.display_address[1]},${elem.location.display_address[2]} </p>
+      <p>Telephone:${elem.display_phone} </p><p> Rating: ${elem.rating}<p></div>`);
+    marker.setPopup(popup);
+
+
     marker.on("dragend", data => {
       const coord = data.target.coordinates;             //getLngLat().toArray();
-      console.log("coord thing", coord);
+      //console.log("coord thing", coord);
       axios
         .patch(`http://localhost:3000/main`, { coordinates: coord })
         .then(() => {
@@ -95,9 +127,44 @@
     })
 
 
-  })
+  }
 
-  map.on('click', function (e) {
+  //filter by search
+  function searchForCafe() {
+    let getOne = document.getElementById("searchForCafe").value;
+    console.log("GET ONE:", getOne);
+    let cafeCoordinate;
+    let cafeDetails;
+    cafeCopy.forEach(el => {
+      if (el.name.toLowerCase() === getOne.toLowerCase()) {
+        cafeDetails = el;
+        cafeCoordinate = el.coordinates;
+        return
+      }
+    })
+
+    let wantedCafe;
+    markerCopy.forEach(el => {
+      //console.log("MARKER COPY", markerCopy)
+      if (cafeCoordinate.longitude === el._lngLat.lng && cafeCoordinate.latitude === el._lngLat.lat) {
+        removeMarkers(markerCopy);
+        drawMarkers(cafeCoordinate, cafeDetails);
+        return;
+
+      }
+    })
+  }
+
+  function removeMarkers(markerCopy) {
+    markerCopy.forEach(marker => marker.remove())
+    markerCopy = []
+  }
+
+
+  //add new Cafe
+  function addCafe() {
+
+    //map.on('click', function (e) {
     let coordinates = e.lngLat;
 
     if (!coordinates.lng && !coordinates.lat)
@@ -106,15 +173,9 @@
       { draggable: false }
     )
 
-
     marker.setLngLat({ lng: coordinates.lng, lat: coordinates.lat });
-    /*marker.addTo(map);
+    /*marker.addTo(map);*/
 
-    const popup = new mapboxgl.Popup();
-    popup.setLngLat({ lng: coordinates.lng, lat: coordinates.lat });
-    popup.setHTML(`<h1><a href="/addCafe">Add Cafe</h1></a>`);
-    marker.setPopup(popup);
-    console.log(e.lngLat);*/
 
     const popup = new mapboxgl.Popup({ closeOnClick: false, className: "my- class" });
     popup.setLngLat({ lng: coordinates.lng, lat: coordinates.lat });
@@ -141,10 +202,9 @@
 
     })
     console.log(e)
+  }
 
-
-
-  })
+  //})
 
 
 </script>
