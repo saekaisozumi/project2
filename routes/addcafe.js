@@ -1,19 +1,26 @@
 const express = require("express");
-//const passport = require("passport");
-//const ensureLogin = require("connect-ensure-login");
 const router = express.Router();
 const Cafe = require("../models/Cafe");
+const uploadCloud = require("../config/cloudinary.js");
 
 //Add a cafe route
 router.get("/addCafe", (req, res, next) => {
   res.render("cafes/addCafe.hbs");
 });
 
-router.post("/addCafe", (req, res, next) => {
-  const { name, address } = req.body;
+router.post("/addCafe", uploadCloud.single("photo"), (req, res, next) => {
+  const { name, address, phone, price, wifi, comments } = req.body;
+  const imgPath = req.file.url;
+  const imgName = req.file.originalname;
   Cafe.create({
+    imgPath,
+    imgName,
     name,
-    address
+    address,
+    phone,
+    price,
+    wifi,
+    comments
   })
     .then(() => {
       res.redirect("/main");

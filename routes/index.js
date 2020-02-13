@@ -27,13 +27,21 @@ router.get("/caffees", (req, res, next) => {
     });
 });
 
-/* router.get("/main", (req, res, next) => {
-  if (!req.session.user) {
-    res.redirect("/");
-    return;
-  } else {
-    res.render("main.hbs");
-  }
-}); */
+router.get("/details/:id", (req, res, next) => {
+  const client = yelp.client(apiKey);
+  let venueId = req.params.id;
+  console.log("WORKING", venueId);
+  client
+    .business(venueId)
+    .then(response => {
+      let details = response.jsonBody;
+      console.log("detailssss:", details);
+      res.render("details.hbs", { venue: details });
+      // res.json(response.jsonBody.coordinates);
+    })
+    .catch(e => {
+      console.log(e);
+    });
+});
 
 module.exports = router;

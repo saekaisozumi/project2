@@ -1,13 +1,31 @@
 <h1>Add a cafe</h1>
-<form action="/addCafe" method="POST">
-  <img src=" ?" alt="">
+<form action="/addCafe" method="POST" enctype="multipart/form-data">
+  <label for="img">Image</label>
+  <input type="file" name="photo">
   <label for="name">Name</label>
   <input type="text" name="name">
-  <label for="address">A</label>
+  <label for="address">Address1</label>
   <input type="text" name="address">
-  <label for="address">Address</label>
+  {{!-- <label for="address">Address2</label>
   <input type="text" name="address">
+  <label for="city">City</label>
+  <input type="text" name="city"> --}}
+  <label for="phone">phone</label>
+  <input type="text" name="phone">
+  <select name="price">
+    <option>€</option>
+    <option>€€</option>
+    <option>€€€</option>
+  </select>
+  <select name="wifi">
+    <option>★</option>
+    <option>★★</option>
+    <option>★★★</option>
+  </select>
+  <label for="comment">Comment</label>
+  <input type="text" name="comment">
+
   {{!-- <label for=“comment”>comments</label>
   <input type=“text” name=“comment”> --}}
-  <button type="submit">Add a cafe</button>
+  <button type="submit" value="SAVE">Add a cafe</button>
 </form>
