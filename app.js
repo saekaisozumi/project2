@@ -205,6 +205,9 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 app.use("/", authRoutes);
 
+const cafeRoutes = require("./routes/addcafe");
+app.use("/", cafeRoutes);
+
 /* const mainRoutes = require("./routes/maps");
 app.use("/", mainRoutes); */
 
