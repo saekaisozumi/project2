@@ -7,6 +7,8 @@
         <input for="searchinput" name="market" class="searchbar input is-danger" id="searchForCafe" type="text"
           placeholder="Search a market" aria-label="Search"> --}}
       <button onclick="getFromAPI()">Back</button>
+      <a href="addCafe"><button>Add a Cafe</button>
+
 
     </div>
   </div>
@@ -46,7 +48,7 @@
     "pk.eyJ1Ijoic2Fla2ExMTExIiwiYSI6ImNrNmhxcXZzeTB6MHUzbm1sZGg4dmd4NTcifQ.n75w0QK5TPx_Qrdq3zeyQA";
   var map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/saeka1111/ck6i1o1ma00zl1ipfgj2vyew4",
+    style: "mapbox://styles/saeka1111/ck6hr1os501r51io2lx2h2h2g",
     center: [13.404019, 52.519083],
     zoom: 11.15
   });
@@ -67,20 +69,32 @@
   //const cafeId = location.pathname.split('/')[1] // /main  NEED TO BE AN ACTUAL ID
   function getFromAPI() {
     axios.get(`http://localhost:3000/caffees`).then(response => {
-      console.log("RESPONSE ID", response.data)
+      //console.log("RESPONSE ID", response.data)
       response.data.forEach(elem => {
-        console.log(elem.coordinates)
-        let coordinates = elem.coordinates;
-        console.log("ELEMENT", elem)
-        console.log(coordinates)
-        cafeCopy.push(elem);
-        drawMarkers(coordinates, elem);
-        //cafeCopy.push()
+        if (elem.coordinates) {
+          let coordinates = elem.coordinates;
+          console.log(elem, coordinates)
+          // console.log("ELEMENT", elem)
+          //console.log(coordinates)
+          cafeCopy.push(elem);
+          drawMarkers(coordinates, elem);
+          //cafeCopy.push()
+        }
+        else {
+          console.log(elem)
+        }
+        //console.log(elem.coordinates)
+
       })
     })
   }
 
+
+
+
+  //function to draw markers
   function drawMarkers(coordinates, elem) {
+
     if (!coordinates.longitude && !coordinates.latitude)
       coordinates = map.getCenter();
     const marker = new mapboxgl.Marker(
@@ -89,18 +103,19 @@
 
     marker.setLngLat({ lng: coordinates.longitude, lat: coordinates.latitude });
     marker.addTo(map);
-    console.log("MARKER", marker);
+    //console.log("MARKER", marker);
     markerCopy.push(marker);
 
     const popup = new mapboxgl.Popup();
     popup.setLngLat({ lng: coordinates.longitude, lat: coordinates.latitude }); // in order to have longitude before latitude the data is reversed because it appears as latitude before longitude but if it is reversed here it will be reversed a second time negating the effect thus for the second time it is left as is
-    popup.setHTML(`<div><img src="${elem.image_url}" alt="" style="width:130px;height:130px;"> <a href="/details/${elem.id}"><h3 >${elem.name}</h3></a><p> Address: ${elem.location.address1},${elem.location.zip_code},${elem.location.city} </p>
+    popup.setHTML(`<div><img src="${elem.image_url}" alt="" style="width:130px;height:130px;"> <a href="/details/${elem.id}"><h3 >${elem.name}</h3></a><p> Address: ${elem.location.display_address[0]},${elem.location.display_address[1]},${elem.location.display_address[2]} </p>
       <p>Telephone:${elem.display_phone} </p><p> Rating: ${elem.rating}<p></div>`);
     marker.setPopup(popup);
 
 
     marker.on("dragend", data => {
       const coord = data.target.coordinates;             //getLngLat().toArray();
+      //console.log("coord thing", coord);
       axios
         .patch(`http://localhost:3000/main`, { coordinates: coord })
         .then(() => {
@@ -114,8 +129,6 @@
 
 
   }
-
-
 
   //filter by search
   function searchForCafe() {
@@ -133,7 +146,7 @@
 
     let wantedCafe;
     markerCopy.forEach(el => {
-      console.log("MARKER COPY", markerCopy)
+      //console.log("MARKER COPY", markerCopy)
       if (cafeCoordinate.longitude === el._lngLat.lng && cafeCoordinate.latitude === el._lngLat.lat) {
         removeMarkers(markerCopy);
         drawMarkers(cafeCoordinate, cafeDetails);
@@ -149,9 +162,10 @@
   }
 
 
+  //add new Cafe
+  function addCafe() {
 
-
-  map.on('click', function (e) {
+    //map.on('click', function (e) {
     let coordinates = e.lngLat;
 
     if (!coordinates.lng && !coordinates.lat)
@@ -163,13 +177,14 @@
     marker.setLngLat({ lng: coordinates.lng, lat: coordinates.lat });
     /*marker.addTo(map);*/
 
-    const popup = new mapboxgl.Popup({ closeOnClick: false, className: 'my-class' });
+
+    const popup = new mapboxgl.Popup({ closeOnClick: false, className: "my- class" });
     popup.setLngLat({ lng: coordinates.lng, lat: coordinates.lat });
     popup.setHTML(`<h1><a href="/addCafe">Add Cafe</h1></a>`);
     popup.addTo(map);
     marker.addTo(map);
     marker.setPopup(popup);
-    console.log(e.lngLat);
+    console.log(e.lngLat)
 
 
 
@@ -188,10 +203,9 @@
 
     })
     console.log(e)
+  }
 
-
-
-  })
+  //})
 
 
 </script>
