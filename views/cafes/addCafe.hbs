@@ -1,31 +1,48 @@
-<h1>Add a cafe</h1>
-<form action="/addCafe" method="POST" enctype="multipart/form-data">
-  <label for="img">Image</label>
-  <input type="file" name="photo">
-  <label for="name">Name</label>
-  <input type="text" name="name">
-  <label for="address">Address</label>
-  <input type="text" name="address" id="newAddress">
-  {{!-- <label for="address">Address2</label>
-  <input type="text" name="address">
-  <label for="city">City</label>
-  <input type="text" name="city"> --}}
-  <label for="phone">phone</label>
-  <input type="text" name="phone">
-  <select name="price">
-    <option>€</option>
-    <option>€€</option>
-    <option>€€€</option>
-  </select>
-  <select name="wifi">
+<dev class="add-container">
+  <img src="images/pexels-photo-414630.jpeg" alt="">
+  <dev class="add-title">
+    <h1>Add a cafe</h1>
+  </dev>
+  <dev class="add-img">
+    <form action="/addCafe" method="POST" enctype="multipart/form-data">
+      <label for="img">Image</label>
+      <input type="file" name="photo">
+  </dev>
+  <br><br>
+  <dev class="add-name">
+    <label for="name">Name</label>
+    <input type="text" name="name">
+  </dev>
+  <br><br>
+  <dev class="add-address">
+    <label for="address">Address1</label>
+    <input type="text" name="address">
+  </dev>
+  <br><br>
+  <dev class="add-phone">
+    <label for="phone">phone</label>
+    <input type="text" name="phone">
+  </dev>
+  <br><br>
+  <dev add="price">
+    <label for="price">Price</label>
+    <select name="price">
+      <option>€</option>
+      <option>€€</option>
+      <option>€€€</option>
+    </select>
+  </dev>
+  <br><br>
+  {{!-- <select name="wifi">
     <option>★</option>
     <option>★★</option>
     <option>★★★</option>
   </select>
   <label for="comment">Comment</label>
-  <input type="text" name="comment">
+  <input type="text" name="comment"> --}}
 
   {{!-- <label for=“comment”>comments</label>
   <input type=“text” name=“comment”> --}}
-  <button type="submit" value="SAVE">Add a cafe</button>
-</form>
+  <button class="add-button" type="submit" value="SAVE">send</button>
+  </form>
+</dev>

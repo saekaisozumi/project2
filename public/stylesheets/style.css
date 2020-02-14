@@ -5,6 +5,7 @@ body {
 
 .auth-img {
   width: 100%;
+  height: 100%;
   position: absolute; }
 
 .auth {
@@ -18,7 +19,7 @@ body {
 
 .auth a {
   font-family: "Courier" !important;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   color: #ffffff;
   text-decoration: none; }
@@ -48,6 +49,7 @@ body {
 
 .login-img {
   width: 100%;
+  height: 100%;
   position: absolute;
   filter: blur(5px); }
 
@@ -85,6 +87,97 @@ body {
 
 .float {
   float: left; }
+
+.container {
+  display: flex;
+  width: 100%;
+  background-color: #ffd6a8;
+  flex-direction: row !important;
+  align-items: center;
+  font-family: "Courier" !important;
+  font-size: 15px;
+  color: #694419; }
+  .container img {
+    padding: 30px; }
+  .container button {
+    font-family: "Courier";
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    color: #694419;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px; }
+  .container input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #694419;
+    outline: none;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.116);
+    width: 500px; }
+
+.detail-container {
+  margin-left: 20px; }
+
+.add-container {
+  display: block;
+  font-size: 20px;
+  height: 650px;
+  background-color: #ffd6a8;
+  color: #694419;
+  flex-direction: column;
+  text-align: center; }
+  .add-container img {
+    width: 300px;
+    margin-top: 40px; }
+  .add-container .add-name input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #694419;
+    outline: none;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.116);
+    width: 500px; }
+  .add-container .add-address input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #694419;
+    outline: none;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.116);
+    width: 500px; }
+
+.add-button {
+  font-family: "Courier";
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  color: #694419;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px; }
+
+.add-phone input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #694419;
+  outline: none;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.116);
+  width: 500px; }
 
 .footer-container {
   background-color: #ffe5b4;

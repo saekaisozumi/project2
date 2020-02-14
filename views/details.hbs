@@ -1,8 +1,38 @@
-<h2>{{venue.name}}</h2>
-<p><img src={{venue.image_url}} alt="image" style="width:400px;height:400px;"></p>
-<p>Address: {{venue.location.display_address}}</p>
-<p>Price: {{venue.price}}</p>
-<p>Have you been there recently? Give your feedback about the Wifi!</p>
-<p></p>
-<input class="addComment" type="text" name="comment" placeholder="write a review">
-<button type="submit">Add Comment</button>
+<div class="container">
+
+  <div class="img-container">
+    <p><img src={{venue.image_url}} alt="image" style="width:400px;height:400px;"></p>
+  </div>
+
+  <div class="detail-container">
+    <h2>{{venue.name}}</h2>
+    <p>Address: {{venue.location.display_address}}</p>
+    <p>Price: {{venue.price}}</p>
+    <br>
+    <p>Have you been there recently? Give your feedback about the Wifi!</p>
+    <p></p>
+
+    <h2>Comments</h2>
+    <div id="comment-box">
+      {{#each cafe.comments}}
+      <p>{{content}}{{author.username}}</p>
+      {{/each}}
+    </div>
+    {{!-- {{#if user}} --}}
+    <form>
+      <label for="message">Add a comment</label>
+      <input type="text" name="content" 　id="message">
+      {{!-- <p>Wifi rate</p>
+  <select name="wifi">
+    <option>★</option>
+    <option>★★</option>
+    <option>★★★</option>
+  </select> --}}
+      <button type="submit">Submit</button>
+    </form>
+    {{!-- {{/if}} --}}
+
+    {{!-- <input class="addComment" type="text" name="comment" placeholder="write a review"> --}}
+  </div>
+</div>
+<script src="/javascripts/comments.js"></script>
