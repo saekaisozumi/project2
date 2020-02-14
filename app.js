@@ -10,7 +10,7 @@ const logger = require("morgan");
 const path = require("path");
 
 mongoose
-  .connect("mongodb://localhost/project-2", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/digit-nomadifi")
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -186,7 +186,4 @@ app.use("/", cafeRoutes);
 /* const mainRoutes = require("./routes/maps");
 app.use("/", mainRoutes); */
 
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/digit-nomadifi"
-);
 module.exports = app;
