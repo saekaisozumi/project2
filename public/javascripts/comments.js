@@ -3,21 +3,23 @@ const getComments = () => {
   // and everytime a new comment is added
 
   const cafeId = document.location.pathname.split("/")[2];
-  return axios.get(`/details/${cafeId}/comments`).then(response => {
-    console.log(response.data);
-    // 8 we iterate through the list of comments from the server to manipulate the DOM
-    const commentBox = document.getElementById("comment-box");
+  return axios
+    .get(`http://localhost:3000/details/${cafeId}/comments`)
+    .then(response => {
+      console.log(response.data);
+      // 8 we iterate through the list of comments from the server to manipulate the DOM
+      const commentBox = document.getElementById("comment-box");
 
-    commentBox.innerHTML = "";
+      commentBox.innerHTML = "";
 
-    response.data.forEach(comment => {
-      const p = document.createElement("p");
-      p.innerHTML = `${comment.content} ${comment.author}`;
-      commentBox.appendChild(p);
+      response.data.forEach(comment => {
+        const p = document.createElement("p");
+        p.innerHTML = `${comment.content} ${comment.author}`;
+        commentBox.appendChild(p);
+      });
+
+      document.querySelector("form").reset();
     });
-
-    document.querySelector("form").reset();
-  });
 };
 
 if (document.querySelector("form")) {
@@ -28,7 +30,7 @@ if (document.querySelector("form")) {
 
     // 1 we make an API call to our `POST` `/rooms/:id/comments` -> BACKEND
     axios
-      .post(`/details/${cafeId}/comments`, {
+      .post(`http://localhost:3000/details/${cafeId}/comments`, {
         content: document.querySelector("input").value
       })
       .then(() => {
