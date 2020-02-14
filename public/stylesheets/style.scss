@@ -106,10 +106,77 @@ body {
   padding: 10px;
   overflow: hidden;
   background-color: rgb(255, 229, 180);
+
+  input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgb(105, 68, 25);
+    outline: none;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.116);
+    width: 500px;
+    //text-decoration: underline;
+  }
+
+  a {
+    font-family: "Courier";
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    color: rgb(105, 68, 25);
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+
+    a:hober {
+      color: rgb(48, 27, 3);
+    }
+  }
+  button {
+    font-family: "Courier";
+    border: 1px solid rgb(150, 107, 58);
+    /* border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none; */
+    color: rgb(105, 68, 25);
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    //font-weight: bold;
+  }
 }
 
 .float {
   float: left;
+}
+
+.small {
+  font-family: "Courier";
+  color: rgb(105, 68, 25);
+
+  a {
+    text-decoration: none;
+    color: rgb(75, 46, 13);
+  }
+
+  img {
+    margin-left: 10px;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  p {
+    margin-left: 10px;
+  }
 }
 
 //detail page
@@ -230,13 +297,14 @@ body {
   background-color: rgb(255, 229, 180);
   padding: 10px;
   margin-top: 2px;
+  color: rgb(105, 68, 25);
 }
 
-.logout a {
+/* .logout a {
   color: black;
   font-weight: bold;
   text-decoration: none;
-}
+} */
 
 /*# sourceMappingURL=style.css.map */
 

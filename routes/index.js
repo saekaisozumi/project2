@@ -16,7 +16,8 @@ router.get("/main", (req, res, next) => {
 });
 
 //
-router.get("/main", (req, res, next) => {
+/* router.get("/main", (req, res, next) => {
+  console.log(req.user);
   if (!req.user) {
     res.redirect("/");
     return;
@@ -32,7 +33,7 @@ router.get("/details", (req, res, next) => {
   } else {
     res.render("details.hbs");
   }
-});
+}); */
 
 ////
 

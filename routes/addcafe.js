@@ -4,6 +4,11 @@ const Cafe = require("../models/Cafe");
 const Comment = require("../models/Comment");
 const uploadCloud = require("../config/cloudinary.js");
 var NodeGeocoder = require("node-geocoder");
+const axios = require("axios");
+const yelp = require("yelp-fusion");
+const mongoose = require("mongoose");
+
+const apiKey = process.env.apiKeyYelp;
 var options = {
   provider: "mapquest",
   apiKey: process.env.mapquest // for Mapquest, OpenCage, Google Premier
@@ -82,55 +87,120 @@ router.post("/addCafe", uploadCloud.single("photo"), (req, res, next) => {
 //Get all comment
 router.get("/details/:id/comments", (req, res, next) => {
   // 6 the axios get request is detected and handled
-  Cafe.findById(req.params.id)
-    .populate({
-      path: "comments",
-      populate: {
-        path: "author"
-      }
-    })
-    .then(cafe => {
-      const comments = cafe.comments.map(comment => {
-        return {
-          content: comment.content,
-          author: comment.author.username
-        };
+  //console.log("Hey");
+  if (mongoose.Types.ObjectId.isValid(req.params.id)) {
+    Cafe.findOne({ _id: req.params.id })
+      .populate({
+        path: "comments",
+        populate: {
+          path: "author"
+        }
+      })
+      .then(cafe => {
+        //console.log(comment.content);
+        if (!cafe) {
+          return res.json([]);
+        }
+        const comments = cafe.comments.map(comment => {
+          return {
+            content: comment.content,
+            author: comment.author.username
+          };
+        });
+        // 7 we respond with the list of comments obtained from the database for the given room -> FRONTEND
+        res.json(comments);
+      })
+      .catch(err => {
+        next(err);
       });
-      // 7 we respond with the list of comments obtained from the database for the given room -> FRONTEND
-      res.json(comments);
-    })
-    .catch(err => {
-      next(err);
-    });
+  } else {
+    Cafe.findOne({ yelpId: req.params.id })
+      .populate({
+        path: "comments",
+        populate: {
+          path: "author"
+        }
+      })
+      .then(cafe => {
+        //console.log(comment.content);
+        if (!cafe) {
+          return res.json([]);
+        }
+        const comments = cafe.comments.map(comment => {
+          return {
+            content: comment.content,
+            author: comment.author.username
+          };
+        });
+        // 7 we respond with the list of comments obtained from the database for the given room -> FRONTEND
+        res.json(comments);
+      })
+      .catch(err => {
+        next(err);
+      });
+  }
 });
 
 //Post a comment
 router.post("/details/:id/comments", (req, res, next) => {
   // 2 the axios POST request is detected and handled
-  console.log(req.params.id);
+  // console.log(req.params.id);
+  console.log(req.user);
   const content = req.body.content;
   const author = req.user._id;
   const cafeId = req.params.id;
+  Comment.create({ content, author, yelpId: cafeId }).then(commentFromDB => {
+    Cafe.findOne({ yelpId: cafeId }).then(dbRes => {
+      // console.log("Menna ", commentFromDB);
+      if (dbRes) {
+        return Cafe.findByIdAndUpdate(dbRes._id, {
+          $push: { comments: commentFromDB._id }
+        }).then(() => {
+          res.json({ comment: commentFromDB });
+        });
+      } else {
+        const client = yelp.client(apiKey);
+        client.business(cafeId).then(yelpRes => {
+          const data = yelpRes.jsonBody;
+          // console.log("SAEKA ", commentFromDB);
 
-  Comment.create({
-    content: content,
-    author: author
-  })
-    .then(commentDocument => {
-      const commentId = commentDocument._id;
-
-      return Cafe.updateOne(
-        { _id: cafeId },
-        { $push: { comments: commentId } }
-      );
-    })
-    .then(() => {
-      // 3 once the comment has been created and the Room.comments updated, we send a response -> FRONTEND
-      res.json({});
-    })
-    .catch(err => {
-      next(err);
+          Cafe.create({
+            name: data.name,
+            location: data.location,
+            address: `${data.location.address1}, ${data.location.zip_code}, ${data.location.city}, ${data.location.country}`,
+            price: data.price,
+            comments: [commentFromDB._id],
+            coordinates: data.coordinates,
+            yelpId: cafeId
+          }).then(() => {
+            res.json({ comment: commentFromDB });
+          });
+        });
+      }
     });
+  });
+
+  // console.log(req.user);
+  // Comment.create({
+  //   content: content,
+  //   author: author
+  // })
+  //   .then(commentDocument => {
+  //     console.log("Here");
+  //     const commentId = commentDocument._id;
+  //     console.log({ content }, { author }, { cafeId });
+  //     return Cafe.updateOne(
+  //       { _id: cafeId },
+  //       { $push: { comments: commentId } }
+  //     );
+  //   })
+  //   .then(() => {
+  //     // 3 once the comment has been created and the Room.comments updated, we send a response -> FRONTEND
+  //     res.json({ HLOO: "test" });
+  //   })
+  //   .catch(err => {
+  //     next(err);
+  //   });
 });
 
 router.patch("/details/:id", (req, res, next) => {
