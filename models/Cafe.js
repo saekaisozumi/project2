@@ -27,7 +27,8 @@ const cafeSchema = new Schema({
   coordinates: {
     latitude: Number,
     longitude: Number
-  }
+  },
+  yelpId: String
 });
 
 const Cafe = mongoose.model("Cafe", cafeSchema);

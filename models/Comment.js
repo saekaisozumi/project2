@@ -5,7 +5,8 @@ const commentSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: "User"
-  } /* ,
+  },
+  yelpId: String /* ,
   wifi: {
     type: String,
     enum: ["★", "★★", "★★★"]

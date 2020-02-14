@@ -6,42 +6,17 @@
       {{!-- <form class="searchform" action="/main" method="GET">
         <input for="searchinput" name="market" class="searchbar input is-danger" id="searchForCafe" type="text"
           placeholder="Search a market" aria-label="Search"> --}}
-      <button onclick="getFromAPI()">Back</button>
+      <button onclick="getFromAPI()">Back to map</button>
       <a href="addCafe"><button>Add a Cafe</button>
+        <a href="/logout"> Log out</a>
 
-
-        {{!-- </div>
-    <div class="float">
-      <div class="date-time">
-        <select name="" id="filter-date">
-          <option>Monday</option>
-          <option>Tuesday</option>
-          <option>Wednesday</option>
-          <option>Thursday</option>
-          <option>Friday</option>
-          <option>Saturday</option>
-          <option>Sunday</option>
-        </select>
-
-        <select name="" id="filter-time">
-          <option>Monday</option>
-          <option>Tuesday</option>
-          <option>Wednesday</option>
-          <option>Thursday</option>
-          <option>Friday</option>
-          <option>Saturday</option>
-          <option>Sunday</option>
-        </select>
-      </div>
-    </div> --}}
-        <div class="logout">
-          <a href="/logout"> Log out</a>
-        </div>
+    </div>
+  </div>
 </nav>
 
 {{!--　change above --}}
 
-<div id='map' style='width: 100%; height:700px;'></div>
+<div id='map' style='width: 100%; height:650px;'></div>
 <script>
   mapboxgl.accessToken =
     "pk.eyJ1Ijoic2Fla2ExMTExIiwiYSI6ImNrNmhxcXZzeTB6MHUzbm1sZGg4dmd4NTcifQ.n75w0QK5TPx_Qrdq3zeyQA";
@@ -107,7 +82,7 @@
 
     const popup = new mapboxgl.Popup();
     popup.setLngLat({ lng: coordinates.longitude, lat: coordinates.latitude }); // in order to have longitude before latitude the data is reversed because it appears as latitude before longitude but if it is reversed here it will be reversed a second time negating the effect thus for the second time it is left as is
-    popup.setHTML(`<div><img src="${elem.image_url}" alt="" style="width:130px;height:130px;"> <a href="/details/${elem.id}"><h3 >${elem.name}</h3></a><p> Address: ${elem.location.display_address[0]},${elem.location.display_address[1]},${elem.location.display_address[2]} </p>
+    popup.setHTML(`<div class="small"><img src="${elem.image_url}" alt="" style="width:190px;height:130px; "> <a href="/details/${elem.id || elem._id}"><h3 >${elem.name}</h3></a><p> Address: ${elem.location.display_address[0]},${elem.location.display_address[1]},${elem.location.display_address[2]} </p>
       <p>Telephone:${elem.display_phone} </p><p> Rating: ${elem.rating}<p></div>`);
     marker.setPopup(popup);
 
