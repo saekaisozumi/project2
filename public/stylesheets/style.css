@@ -1,141 +1,166 @@
 body {
   padding: 10px;
   font-family: "Courier New";
-  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */ }
+  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
+}
 
 .auth-img {
   width: 100%;
   height: 100%;
-  position: absolute; }
+  position: absolute;
+}
 
 .auth {
   position: relative;
   padding-top: 40%;
   margin-left: 60%;
-  /* width: 100%;
-    height: 60%; */
+
   /* background-color: white; */
-  /* filter: blur(2px); */ }
+  /* filter: blur(2px); */
+}
 
 .auth a {
   font-family: "Courier" !important;
   font-size: 18px;
   font-weight: bold;
   color: #ffffff;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 .auth a:hover {
-  color: #1a1a44; }
+  color: #1a1a44;
+}
 
 .login-container h3 {
-  color: #694419; }
+  color: #694419;
+}
 
 .login-container a {
   font-family: "Courier" !important;
   font-size: 15px;
   color: #694419;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 .login-container a:hover {
   color: #301b03;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .login-container label {
-  color: #694419; }
+  color: #694419;
+}
 
 .login-container p {
   color: #694419;
-  font-size: 15px; }
+  font-size: 15px;
+}
 
 .login-img {
   width: 100%;
   height: 100%;
   position: absolute;
-  filter: blur(5px); }
+  filter: blur(5px);
+}
 
 .login-info {
   position: relative;
   padding-top: 35%;
-  margin-left: 55%; }
-  .login-info button {
-    font-family: "Courier";
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #694419;
-    color: #694419;
-    background-color: rgba(255, 255, 255, 0);
-    text-align: center;
-    text-decoration: none;
-    font-size: 15px; }
-  .login-info button:hober {
-    color: #301b03; }
-  .login-info input {
-    border: none;
-    outline: none;
-    padding-bottom: 8px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.116);
-    text-decoration: underline; }
+  margin-left: 55%;
+}
+.login-info button {
+  font-family: "Courier";
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #694419;
+  color: #694419;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+}
+.login-info button:hober {
+  color: #301b03;
+}
+.login-info input {
+  border: none;
+  outline: none;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.116);
+  text-decoration: underline;
+}
 
 .nav-bar-container {
   list-style-type: none;
   margin-bottom: 2px;
   padding: 10px;
   overflow: hidden;
-  background-color: #ffe5b4; }
-  .nav-bar-container input {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #694419;
-    outline: none;
-    padding-bottom: 8px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.116);
-    width: 500px; }
-  .nav-bar-container a {
-    font-family: "Courier";
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    color: #694419;
-    background-color: rgba(255, 255, 255, 0);
-    text-align: center;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: bold; }
-    .nav-bar-container a a:hober {
-      color: #301b03; }
-  .nav-bar-container button {
-    font-family: "Courier";
-    border: 1px solid #966b3a;
-    /* border-top: none;
+  background-color: #ffe5b4;
+}
+.nav-bar-container input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #694419;
+  outline: none;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.116);
+  width: 500px;
+}
+.nav-bar-container a {
+  font-family: "Courier";
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  color: #694419;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+.nav-bar-container a a:hober {
+  color: #301b03;
+}
+.nav-bar-container button {
+  font-family: "Courier";
+  border: 1px solid #966b3a;
+  /* border-top: none;
     border-left: none;
     border-right: none;
     border-bottom: none; */
-    color: #694419;
-    background-color: rgba(255, 255, 255, 0);
-    text-align: center;
-    text-decoration: none;
-    font-size: 15px; }
+  color: #694419;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+}
 
 .float {
-  float: left; }
+  float: left;
+}
 
 .small {
   font-family: "Courier";
-  color: #694419; }
-  .small a {
-    text-decoration: none;
-    color: #4b2e0d; }
-  .small img {
-    margin-left: 10px; }
-  .small h3 {
-    text-align: center; }
-  .small p {
-    margin-left: 10px; }
+  color: #694419;
+}
+.small a {
+  text-decoration: none;
+  color: #4b2e0d;
+}
+.small img {
+  margin-left: 10px;
+}
+.small h3 {
+  text-align: center;
+}
+.small p {
+  margin-left: 10px;
+}
 
 .container {
   display: flex;
@@ -145,33 +170,38 @@ body {
   align-items: center;
   font-family: "Courier" !important;
   font-size: 15px;
-  color: #694419; }
-  .container img {
-    padding: 30px; }
-  .container button {
-    font-family: "Courier";
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    color: #694419;
-    background-color: rgba(255, 255, 255, 0);
-    text-align: center;
-    text-decoration: none;
-    font-size: 15px; }
-  .container input {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #694419;
-    outline: none;
-    padding-bottom: 8px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.116);
-    width: 500px; }
+  color: #694419;
+}
+.container img {
+  padding: 30px;
+}
+.container button {
+  font-family: "Courier";
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  color: #694419;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+}
+.container input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #694419;
+  outline: none;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.116);
+  width: 500px;
+}
 
 .detail-container {
-  margin-left: 20px; }
+  margin-left: 20px;
+}
 
 .add-container {
   display: block;
@@ -180,30 +210,34 @@ body {
   background-color: #ffd6a8;
   color: #694419;
   flex-direction: column;
-  text-align: center; }
-  .add-container img {
-    width: 300px;
-    margin-top: 40px; }
-  .add-container .add-name input {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #694419;
-    outline: none;
-    padding-bottom: 8px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.116);
-    width: 500px; }
-  .add-container .add-address input {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #694419;
-    outline: none;
-    padding-bottom: 8px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.116);
-    width: 500px; }
+  text-align: center;
+}
+.add-container img {
+  width: 300px;
+  margin-top: 40px;
+}
+.add-container .add-name input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #694419;
+  outline: none;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.116);
+  width: 500px;
+}
+.add-container .add-address input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #694419;
+  outline: none;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.116);
+  width: 500px;
+}
 
 .add-button {
   font-family: "Courier";
@@ -215,7 +249,8 @@ body {
   background-color: rgba(255, 255, 255, 0);
   text-align: center;
   text-decoration: none;
-  font-size: 20px; }
+  font-size: 20px;
+}
 
 .add-phone input {
   border-top: none;
@@ -226,13 +261,15 @@ body {
   padding-bottom: 8px;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.116);
-  width: 500px; }
+  width: 500px;
+}
 
 .footer-container {
   background-color: #ffe5b4;
   padding: 10px;
   margin-top: 2px;
-  color: #694419; }
+  color: #694419;
+}
 
 /* .logout a {
   color: black;
