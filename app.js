@@ -10,7 +10,7 @@ const logger = require("morgan");
 const path = require("path");
 
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost/digit-nomadifi")
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/digital-nomadifi")
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
