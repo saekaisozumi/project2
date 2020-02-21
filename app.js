@@ -103,7 +103,7 @@ passport.use(
     {
       clientID: process.env.clientID,
       clientSecret: process.env.clientSecret,
-      callbackURL: "http://localhost:3000/facebook/callback"
+      callbackURL: "https://digital-nomadifi.herokuapp.com/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({ facebookId: profile.id })
