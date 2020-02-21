@@ -4,7 +4,6 @@ const Cafe = require("../models/Cafe");
 const Comment = require("../models/Comment");
 const uploadCloud = require("../config/cloudinary.js");
 var NodeGeocoder = require("node-geocoder");
-const axios = require("axios");
 const yelp = require("yelp-fusion");
 const apiKey = process.env.apiKeyYelp;
 var options = {

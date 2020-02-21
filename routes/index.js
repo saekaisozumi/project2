@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const axios = require("axios");
 const yelp = require("yelp-fusion");
 const apiKey = process.env.apiKeyYelp;
 const Cafe = require("../models/Cafe");
