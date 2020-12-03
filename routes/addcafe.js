@@ -9,14 +9,9 @@ const yelp = require("yelp-fusion");
 const mongoose = require("mongoose");
 
 const apiKey = process.env.apiKeyYelp;
-var options = {
-  provider: "mapquest",
-  apiKey: process.env.mapquest // for Mapquest, OpenCage, Google Premier
-};
-var geocoder = NodeGeocoder(options);
 
 //Get a cafe
-router.get("/addCafe", (req, res, next) => {
+router.get("/Cafe", (req, res, next) => {
   Cafe.find()
     .then(cafes => {
       res.render("cafes/addCafe.hbs", { cafes, user: req.user });
